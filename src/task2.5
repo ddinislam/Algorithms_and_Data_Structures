@@ -1,0 +1,87 @@
+import java.util.*;
+
+class BankAccount {
+    int accountNumber;
+    String username;
+    double balance;
+
+    public BankAccount(int accountNumber, String username, double balance) {
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.balance = balance;
+    }
+
+    public String toString() {
+        return accountNumber + ". " + username + " – Balance: " + balance;
+    }
+}
+
+public class Task5 {
+    static Queue<BankAccount> accountRequests = new LinkedList<>();
+    static LinkedList<BankAccount> accounts = new LinkedList<>();
+    static Scanner scanner = new Scanner(System.in);
+    static int accountIdCounter = 1;
+
+    public static void main(String[] args) {
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n--- ACCOUNT REQUESTS ---");
+            System.out.println("1 - Submit Account Request");
+            System.out.println("2 - Process Next Request");
+            System.out.println("3 - View Pending Requests");
+            System.out.println("4 - View Approved Accounts");
+            System.out.println("5 - Exit");
+            System.out.print("Choice: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1": submitRequest(); break;
+                case "2": processRequest(); break;
+                case "3": viewPending(); break;
+                case "4": viewAccounts(); break;
+                case "5": running = false; System.out.println("Exit..."); break;
+                default: System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void submitRequest() {
+        System.out.print("Enter username: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter initial deposit: ");
+        double balance = Double.parseDouble(scanner.nextLine());
+
+        accountRequests.add(new BankAccount(accountIdCounter++, name, balance));
+        System.out.println("Request submitted for: " + name);
+    }
+
+    static void processRequest() {
+        if (!accountRequests.isEmpty()) {
+            BankAccount approved = accountRequests.poll();
+            accounts.add(approved);
+            System.out.println("Account approved for: " + approved.username);
+        } else {
+            System.out.println("No pending requests.");
+        }
+    }
+
+    static void viewPending() {
+        if (accountRequests.isEmpty()) {
+            System.out.println("No pending requests.");
+        } else {
+            System.out.println("Pending Requests:");
+            for (BankAccount acc : accountRequests) System.out.println(acc);
+        }
+    }
+
+    static void viewAccounts() {
+        if (accounts.isEmpty()) {
+            System.out.println("No approved accounts yet.");
+        } else {
+            System.out.println("Approved Accounts:");
+            for (BankAccount acc : accounts) System.out.println(acc);
+        }
+    }
+}

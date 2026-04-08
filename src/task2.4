@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class Task4 {
+    static Queue<String> billQueue = new LinkedList<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n--- BILL PAYMENT QUEUE ---");
+            System.out.println("1 - Add Bill Payment");
+            System.out.println("2 - Process Next Bill");
+            System.out.println("3 - View Queue");
+            System.out.println("4 - Exit");
+            System.out.print("Choice: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addBill();
+                    break;
+                case "2":
+                    processBill();
+                    break;
+                case "3":
+                    viewQueue();
+                    break;
+                case "4":
+                    running = false;
+                    System.out.println("Exit...");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+
+    static void addBill() {
+        System.out.print("Enter bill name (example: Electricity Bill): ");
+        String bill = scanner.nextLine();
+
+        if (bill.isEmpty()) {
+            System.out.println("Bill name cannot be empty!");
+            return;
+        }
+
+        billQueue.add(bill);
+        System.out.println("Added: " + bill);
+    }
+
+
+    static void processBill() {
+        if (!billQueue.isEmpty()) {
+            String processed = billQueue.poll();
+            System.out.println("Processing: " + processed);
+        } else {
+            System.out.println("No bills to process!");
+        }
+    }
+
+
+    static void viewQueue() {
+        if (billQueue.isEmpty()) {
+            System.out.println("Queue is empty.");
+        } else {
+            System.out.println("Current bill queue: " + billQueue);
+        }
+    }
+}

@@ -1,0 +1,130 @@
+import java.util.*;
+
+class BankAccount {
+    int accountNumber;
+    String username;
+    double balance;
+
+    public BankAccount(int accountNumber, String username, double balance) {
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.balance = balance;
+    }
+
+    public String toString() {
+        return accountNumber + ". " + username + " – Balance: " + balance;
+    }
+}
+
+public class Task2 {
+    static LinkedList<BankAccount> accounts = new LinkedList<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        accounts.add(new BankAccount(1, "Ali", 150000));
+        accounts.add(new BankAccount(2, "Sara", 220000));
+
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n--- BANK OPERATIONS ---");
+            System.out.println("1 - Deposit");
+            System.out.println("2 - Withdraw");
+            System.out.println("3 - Show Accounts");
+            System.out.println("4 - Exit");
+            System.out.print("Choice: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    deposit();
+                    break;
+                case "2":
+                    withdraw();
+                    break;
+                case "3":
+                    showAccounts();
+                    break;
+                case "4":
+                    running = false;
+                    System.out.println("Exit...");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+
+    static void deposit() {
+        System.out.print("Enter username: ");
+        String name = scanner.nextLine();
+
+        BankAccount acc = findAccount(name);
+
+        if (acc != null) {
+            System.out.print("Enter deposit amount: ");
+            double amount = Double.parseDouble(scanner.nextLine());
+
+            if (amount <= 0) {
+                System.out.println("Invalid amount!");
+                return;
+            }
+
+            acc.balance += amount;
+
+            System.out.println("Deposit successful!");
+            System.out.println("New balance: " + acc.balance);
+        } else {
+            System.out.println("User not found!");
+        }
+    }
+
+
+    static void withdraw() {
+        System.out.print("Enter username: ");
+        String name = scanner.nextLine();
+
+        BankAccount acc = findAccount(name);
+
+        if (acc != null) {
+            System.out.print("Enter withdraw amount: ");
+            double amount = Double.parseDouble(scanner.nextLine());
+
+            if (amount <= 0) {
+                System.out.println("Invalid amount!");
+                return;
+            }
+
+            if (amount <= acc.balance) {
+                acc.balance -= amount;
+
+                System.out.println("Withdraw successful!");
+                System.out.println("New balance: " + acc.balance);
+            } else {
+                System.out.println("Insufficient funds!");
+            }
+        } else {
+            System.out.println("User not found!");
+        }
+    }
+
+
+    static void showAccounts() {
+        System.out.println("\nAccounts List:");
+        for (BankAccount acc : accounts) {
+            System.out.println(acc);
+        }
+    }
+
+
+    static BankAccount findAccount(String username) {
+        for (BankAccount acc : accounts) {
+            if (acc.username.equalsIgnoreCase(username)) {
+                return acc;
+            }
+        }
+        return null;
+    }
+}

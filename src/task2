@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.print("how much numbers : ");
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<Integer> list = InputNumbers(sc,n,new ArrayList<>());
+        System.out.println("The average of the numbers is: ");
+        System.out.print(Average(n, list, n));
+    }
+    public static ArrayList<Integer> InputNumbers(Scanner sc, int n, ArrayList<Integer> list) {
+        if (n == 0) {
+            return list;
+        }
+        list.add(sc.nextInt());
+        return InputNumbers(sc, n-1, list);
+    }
+    public static double Average(int n, ArrayList<Integer> list, int totalCount){
+        if (n == 0){
+            return 0.0;
+        }
+        if (n == 1){
+            return (double) list.getFirst()/totalCount;
+        }
+        return ((double) list.get(n - 1) / totalCount) + Average(n - 1, list, totalCount);
+    }
+}

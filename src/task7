@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.print("Enter amount of elements to be reversed: ");
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.print("Enter a list of them: ");
+        reversePrint(n, sc);
+    }
+    public static void reversePrint(int n, Scanner sc) {
+        if (n == 0) {
+            return;
+        }
+        int current = sc.nextInt();
+        reversePrint(n-1, sc);
+        System.out.print(current + " ");
+    }
+}

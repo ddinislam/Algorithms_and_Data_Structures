@@ -1,0 +1,30 @@
+public class Task6 {
+    public static void main(String[] args) {
+
+        BankAccount[] accountsArray = new BankAccount[3];
+        accountsArray[0] = new BankAccount(101, "Ali", 150000);
+        accountsArray[1] = new BankAccount(102, "Sara", 220000);
+        accountsArray[2] = new BankAccount(103, "Omar", 50000);
+
+        System.out.println("--- Physical Data Structure: Array ---");
+        for (BankAccount acc : accountsArray) {
+            System.out.println(acc);
+        }
+    }
+}
+
+class BankAccount {
+    int accountNumber;
+    String username;
+    double balance;
+
+    public BankAccount(int accountNumber, String username, double balance) {
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.balance = balance;
+    }
+
+    public String toString() {
+        return accountNumber + ". " + username + " – Balance: " + balance;
+    }
+}

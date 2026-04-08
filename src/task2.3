@@ -1,0 +1,81 @@
+import java.util.*;
+
+public class Task3 {
+    static Stack<String> history = new Stack<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n--- TRANSACTION HISTORY ---");
+            System.out.println("1 - Add transaction");
+            System.out.println("2 - Show last transaction (peek)");
+            System.out.println("3 - Undo last transaction (pop)");
+            System.out.println("4 - Show all history");
+            System.out.println("5 - Exit");
+            System.out.print("Choice: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addTransaction();
+                    break;
+                case "2":
+                    showLast();
+                    break;
+                case "3":
+                    undoTransaction();
+                    break;
+                case "4":
+                    showAll();
+                    break;
+                case "5":
+                    running = false;
+                    System.out.println("Exit...");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+
+    static void addTransaction() {
+        System.out.print("Enter transaction (example: Deposit 50000 to Ali): ");
+        String tr = scanner.nextLine();
+
+        history.push(tr);
+        System.out.println("Transaction added!");
+    }
+
+    static void showLast() {
+        if (!history.isEmpty()) {
+            System.out.println("Last transaction: " + history.peek());
+        } else {
+            System.out.println("No transactions yet.");
+        }
+    }
+
+    static void undoTransaction() {
+        if (!history.isEmpty()) {
+            System.out.println("Undo → " + history.pop());
+        } else {
+            System.out.println("Nothing to undo.");
+        }
+    }
+
+
+    static void showAll() {
+        if (history.isEmpty()) {
+            System.out.println("History is empty.");
+            return;
+        }
+
+        System.out.println("All transactions:");
+        for (String tr : history) {
+            System.out.println(tr);
+        }
+    }
+}

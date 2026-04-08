@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.print("Enter a string: ");
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        System.out.print("Consisting only of digits: " + isAllDigits(str, 0));
+    }
+    public static String isAllDigits(String str, int index) {
+        if (index == str.length()) {
+            return "Yes";
+        }
+        if(!Character.isDigit(str.charAt(index))) {
+            return "No";
+        }
+        return isAllDigits(str, index + 1);
+    }
+}
