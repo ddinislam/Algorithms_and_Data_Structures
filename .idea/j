@@ -1,0 +1,155 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void printDigits(int n) {
+        if (n < 10) {
+            System.out.println(n);
+            return;
+        }
+
+        printDigits(n / 10);
+        System.out.println(n % 10);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Введите число: ");
+        int number = sc.nextInt();
+
+        printDigits(number);
+    }
+}
+
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void printDigits(int n) {
+        if (n < 10) {
+            System.out.println(n);
+            return;
+        }
+
+        printDigits(n / 10);
+        System.out.println(n % 10);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Введите число: ");
+        int number = sc.nextInt();
+
+        printDigits(number);
+    }
+}
+
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static boolean isPrime(int n, int i) {
+        if (i == 1) return true;
+
+        if (n % i == 0) return false;
+
+        return isPrime(n, i - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        if (n < 2) {
+            System.out.println("Composite");
+        } else if (isPrime(n, n / 2)) {
+            System.out.println("Prime");
+        } else {
+            System.out.println("Composite");
+        }
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        return n * factorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int result = factorial(n);
+
+        System.out.println(result);
+    }
+}
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        return n * factorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int result = factorial(n);
+
+        System.out.println(result);
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static int power(int a, int n) {
+        if (n == 0) return 1;
+
+        return a * power(a, n - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int a = sc.nextInt();
+        int n = sc.nextInt();
+
+        System.out.println(power(a, n));
+    }
+}
+
+

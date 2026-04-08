@@ -18,10 +18,10 @@ class BankAccount {
 }
 
 class Task6 {
-    static LinkedList<BankAccount> accounts = new LinkedList<>(); // Task 1 [cite: 28]
-    static Stack<String> transactionHistory = new Stack<>();       // Task 3 [cite: 41]
-    static Queue<String> billQueue = new LinkedList<>();           // Task 4 [cite: 52]
-    static Queue<BankAccount> accountRequests = new LinkedList<>(); // Task 5 [cite: 59]
+    static LinkedList<BankAccount> accounts = new LinkedList<>();
+    static Stack<String> transactionHistory = new Stack<>();
+    static Queue<String> billQueue = new LinkedList<>();
+    static Queue<BankAccount> accountRequests = new LinkedList<>();
 
     static Scanner scanner = new Scanner(System.in);
     static int accountIdCounter = 1;
@@ -156,7 +156,6 @@ class Task6 {
         }
     }
 
-    // Вспомогательные методы
     static void runTask6Demo() {
         System.out.println("Task 6: Physical Data Structure (Array) Demo [cite: 67-70]");
         BankAccount[] fixedArray = new BankAccount[3];
